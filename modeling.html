@@ -70,13 +70,61 @@
 					to change every single weight value. Therefore, instead of training ANN and converting it into a neuromorphic circuit, we rather directly
 					take the conductances as learnable parameters.
 				</div>
+				<figure>
+                    <img src="img/myfigures/neg.png" alt="Analog Neuromorphic Circuit" style="width: 30%;"/>
+                    <figcaption>Figure 2: Schematic of an inverter-based negation circuit.</figcaption>
+                </figure>
 				<h5>2. Lack of negative resistance</h5>
 				<div class="mytext">
 					As the weights are emulated by the conductances, they can only be positive values, which impact the expressiveness of the computing system. Therefore,
 					to express negative relations, we proposed an inverter-based negation circuit, which can invert the input signal to a negative one, so that the
 					negative relationship can be converted to an alternative expression:
-					<p>$$ (-w_i)\cdot x_i \to w_i\cdot (-x_i) \to w_i \cdot {\rm neg}(x_i) $$</p>
-
+					<p>$$ (-w_i)\cdot x_i \to w_i\cdot (-x_i) \to w_i \cdot {\rm neg}(x_i). $$</p>
+					Note that, as shown in Figure 2, the transfer characteristic of the negation circuit is not linear. Therefore, the \({\rm neg}(\cdot)\) function need to
+					be considered into the training process, instead of simply prepend a negation circuit when negative weight is required. To facilitate the design of negaation
+					circuit, we use a surrogate conductance \( \theta \) as learnable parameter, which encodes the real conductance by its absolute value \( g=|\theta| \)
+					and the existance of negation circuit through its sign \( \theta = {\rm sign} (\theta) \).
+				</div>
+				<h5>3. Limited Manufacturability</h5>
+				<div class="mytext">
+					Due to technical limitations, the manufacturable conductance values are limited in a certain range, denoted by \( [g_{\rm min},g_{\rm max}]\cup \{0\} \).
+					Therefore, in the forward pass, we project the surrogate conductance through a piece-wise linear function to the manufacturable conductance space.
+					<figure>
+						<img src="img/myfigures/forward.png" alt="Analog Neuromorphic Circuit" style="width: 40%;"/>
+						<figcaption>Figure 3: Projecting surrogate conductance to manufacturable range.</figcaption>
+					</figure>
+					<div class="section-spacing"></div>
+					<h4>Modeling of the Neuromorphic Circuit</h4>
+				<div class="mytext">
+					After obtaining the mathematical description of the neuromorphic circuit, we can model and optimize the learnable parameters (i.e., condutances) through
+					different approaches. The most straightforward way is to employ ML-based approach, as the neuromorphic circuit was targeting to mimic ANNs. Beside, evolutionary
+					algorithms can also be employed to optimize the circuit.
+				</div>
+				<h5>1. Machine Learning Approach</h5>
+				<div class="mytext">
+					Through formulating the computing graph from the original learnable parameter \( \theta \) to the manufacturable conductance \( \tilde{\theta} \), and
+					thus formulating the corresponding weights \( w \), the output of the forward pass of the computing graph simulates the output of the neuromorphic circuit. By
+					designing the loss function, learnable parameters can be optimized through back-propagation. However, as this is a gradient-based training process, it is critical
+					to keep every computing operation in the computing graph is differentiable. Therefore, additional measures to the non-differentiable operation, e.g., the projection
+					of \( \theta \) to \( \tilde{\theta} \), must be taken. A promising method is to provide another function that can heuristically provide informative gradient information
+					and thus enables training through gradient descent.
+					<figure>
+						<img src="img/myfigures/backward.png" alt="Analog Neuromorphic Circuit" style="width: 40%;"/>
+						<figcaption>Figure 4: Heuristic gradient that propates back from \( \tilde{\theta} \) to \( \theta \).</figcaption>
+					</figure>
+					<h5>2. Evolutionary Approach</h5>
+					<div class="mytext">
+						Compared to the gradient approach, evolutionary algorithms allows more flexible optimization problems. For example, the non-differentiable projection of 
+						surrogate condutance can be directly involved into the evolutionary algorithm withtout any additional measures. Also, the evolutionary algorithm can even optimize
+						the circuit topology (neural architecture search) along with the training of conductances. However, the evolutionary algorithm is more computationally expensive, and 
+						requires many task-specific designs to achieve desired training objective.
+						<figure>
+							<img src="img/myfigures/ea.png" alt="Analog Neuromorphic Circuit" style="width: 100%;"/>
+							<figcaption>Figure 5: Evolutionary algorithm that allows training both parameters and neural architecture.</figcaption>
+						</figure>
+						Figure 5 illustrates an evolutionary algorithm. By encoding the neurons and connections into the genomes, both parameters and neural architecture can be optimized through
+						speciation, crossover, and mutation.
+				</div>
 				</div>
         </div>
     </div>
