@@ -5,6 +5,7 @@
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -42,21 +43,40 @@
                 <h4>What is an analog neuromorphic circuit?</h4>
                 <figure>
                     <img src="img/myfigures/primitive.png" alt="Analog Neuromorphic Circuit" />
-                    <figcaption>Figure 1: Schematic of an analog neuromorphic circuit</figcaption>
+                    <figcaption>Figure 1: Schematic of an analog neuromorphic circuit.</figcaption>
                 </figure>
 				<div class="mytext">
-					Neuromorphic circuits are specialized electronic circuits aiming to emulate computational paradigms in artificial neural networks (ANNs), primarily multilayer perceptrons (MLPs). ANNs are not only capable of solving highly-complicated problems, but also composed of only streamlined elemental operations, namely, weighted-sums and nonlinear activations. Since these operations can be easily implemented through simple circuits, neuromorphic circuits have garnered significant interest within the EDA community.
+					Neuromorphic circuits are specialized electronic circuits aiming to emulate computational paradigms in artificial neural networks (ANNs),
+					primarily multilayer perceptrons (MLPs). ANNs are not only capable of solving highly-complicated problems, but also composed of only
+					streamlined elemental operations, namely, weighted-sums and nonlinear activations. Since these operations can be easily implemented
+					through simple circuits, neuromorphic circuits have garnered significant interest within the EDA community.
 				</div>
 
 				<div class="section-spacing"></div>
 
 				<h4>Difficulties in modeling the neuromorphic circuit?</h4>
 				<div class="mytext">
-					Although neuromorphic circuits are designed to emulate ANNs, due to physical constraints, not all ANNs can be perfectly mapped into a corresponding neuromorphic circuit.
+					Although neuromorphic circuits are designed to emulate ANNs, due to physical constraints, not all ANNs can be perfectly mapped into a
+					corresponding neuromorphic circuit.
 				</div>
-				<h5>1. Constraint on the "weights"</h5>
+				<h5>1. Constraint of the "weights"</h5>
 				<div class="mytext">
-					Although neuromorphic circuits are designed to emulate ANNs, due to physical constraints, not all ANNs can be perfectly mapped into a corresponding neuromorphic circuit.
+					Although neuromorphic circuits are designed to emulate ANNs, due to physical constraints, not all ANNs can be perfectly mapped into a
+					corresponding neuromorphic circuit. Because the weights are embodied by the resistances through
+					<p>$$ w_i = \frac{g_i}{\sum_j g_j},$$</p>
+					where \( g_i \) is defined by \( 1/R_i \), named conductance. Therefore, it is evident that the weights, as well as the sum of the weights
+					inside a neuron, are necessarily less than one. If the weights in an ANN doesn't meet this constraint, it can not be mapped into a physical
+					circuit. Also, as the weights are represented by the ratio of the conductancs, they are coupled with each other, meaning that it is difficult
+					to change every single weight value. Therefore, instead of training ANN and converting it into a neuromorphic circuit, we rather directly
+					take the conductances as learnable parameters.
+				</div>
+				<h5>2. Lack of negative resistance</h5>
+				<div class="mytext">
+					As the weights are emulated by the conductances, they can only be positive values, which impact the expressiveness of the computing system. Therefore,
+					to express negative relations, we proposed an inverter-based negation circuit, which can invert the input signal to a negative one, so that the
+					negative relationship can be converted to an alternative expression:
+					<p>$$ (-w_i)\cdot x_i \to w_i\cdot (-x_i) \to w_i \cdot {\rm neg}(x_i) $$</p>
+
 				</div>
         </div>
     </div>
