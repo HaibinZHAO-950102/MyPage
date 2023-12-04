@@ -101,12 +101,13 @@ h1, h2, h3, h4, h5, h6{
 	font-family: "Poppins";
 	color: #000;
 }
+
 h1 { font-size: 45px; }
 h2 { font-size: 36px; }
 h3 { font-size: 30px; }
 h4 { font-size: 24px; }
-h5 { font-size: 20px; }
-h6 { font-size: 16px; }
+h5 { font-size: 18px; margin-top: 15px; margin-bottom: 10px;}
+h6 { font-size: 14px; }
 
 .arlo_tm_all_wrap{
 	width: 100%;
@@ -834,6 +835,14 @@ h6 { font-size: 16px; }
 	height: auto;
 	clear: both;
 	float: left;
+	padding-top: 30px;
+}
+.arlo_tm_portfolio .portfolio_text{
+	width: 100%;
+	height: auto;
+	clear: both;
+	float: left;
+	font-size: 18px;
 	padding-top: 73px;
 }
 .arlo_tm_portfolio .portfolio_filter{
@@ -1141,6 +1150,9 @@ h6 { font-size: 16px; }
 	position: absolute;
 	z-index: -11;
 	display: none;
+}
+.arlo_tm_news .mytext{
+	font-size: 18px;
 }
 body.modal{
 	overflow-y: hidden;
@@ -1843,10 +1855,32 @@ body.modal{
 .section-spacing {
     height: 3em; /* Adjust the height as needed for more or less space */
 }
+.description {
+    padding-left: 20px; /* 左侧内部缩进20像素 */
+	line-height: 2; /* 增大行间距 */
+	
+}
 
-.arlo_tm_portfolio_animation_wrap .zoom .image-title {
-    display: block; /* Ensures the title appears on a new line */
-    text-align: center; /* Center-aligns the title */
-    margin-top: 5px; /* Adds some space between the image and the title */
-    /* Additional styling as needed */
+.descriptionlarge {
+	line-height: 2; /* 增大行间距 */
+	font-size: 50;
+}
+
+.container {
+    width: 100%; /* 确保容器宽度不超过屏幕宽度 */
+    max-width: 100vw; /* 限制最大宽度为视口宽度 */
+    margin: auto; /* 可选，居中对齐容器 */
+    overflow: hidden; /* 隐藏溢出内容 */
+}
+
+figure img {
+    width: 80%; /* 图片宽度占满容器 */
+    height: auto; /* 保持图片比例 */
+    display: block; /* 防止图片下方出现额外空间 */
+    margin: 0 auto; /* 水平居中图片 */
+}
+
+figcaption {
+    text-align: center; /* 将caption文字居中 */
+    margin-top: 10px; /* 在图片和caption之间添加一些空间 */
 }
