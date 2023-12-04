@@ -23,6 +23,7 @@
 16) ARLO MEDIA QUERIES (FOR SMALL DEVICES)
 
 
+
 /*---------------------------------------------------*/
 /*	01) ARLO BASE
 /*---------------------------------------------------*/
@@ -32,6 +33,17 @@
     margin: auto; /* 可选，居中对齐容器 */
     overflow: hidden; /* 隐藏溢出内容 */
 }
+
+@media screen and (max-width: 1000px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+    /* 其他适合移动设备的样式调整 */
+}
+
+
+
 
 html {
 	overflow-x: hidden;
@@ -688,6 +700,17 @@ h6 { font-size: 14px; }
 	height: 17px;
 	color: #e65f78;
 }
+
+@media screen and (max-width: 768px) {
+    .arlo_tm_about .left, .arlo_tm_about .right {
+        width: 100%;
+        float: none;
+        padding: 0;
+    }
+    /* 其他适合移动设备的样式调整 */
+}
+
+
 .arlo_tm_button{
 	width: 100%;
 	height: auto;
@@ -1882,4 +1905,15 @@ figure img {
 figcaption {
     text-align: center; /* 将caption文字居中 */
     margin-top: 10px; /* 在图片和caption之间添加一些空间 */
+}
+
+a {
+    text-decoration: none;  /* 去掉下划线 */
+    color: inherit;         /* 颜色继承父元素 */
+}
+
+/* 可选：为超链接在悬停时添加样式 */
+a:hover {
+    text-decoration: underline; /* 悬停时添加下划线 */
+    color: palevioletred;                /* 悬停时改变颜色 */
 }
