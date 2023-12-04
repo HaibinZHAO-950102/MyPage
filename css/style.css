@@ -26,6 +26,12 @@
 /*---------------------------------------------------*/
 /*	01) ARLO BASE
 /*---------------------------------------------------*/
+.container {
+    width: 1000px; /* 确保容器宽度不超过屏幕宽度 */
+    max-width: 100vw; /* 限制最大宽度为视口宽度 */
+    margin: auto; /* 可选，居中对齐容器 */
+    overflow: hidden; /* 隐藏溢出内容 */
+}
 
 html {
 	overflow-x: hidden;
@@ -1864,13 +1870,6 @@ body.modal{
 .descriptionlarge {
 	line-height: 2; /* 增大行间距 */
 	font-size: 50;
-}
-
-.container {
-    width: 100%; /* 确保容器宽度不超过屏幕宽度 */
-    max-width: 100vw; /* 限制最大宽度为视口宽度 */
-    margin: auto; /* 可选，居中对齐容器 */
-    overflow: hidden; /* 隐藏溢出内容 */
 }
 
 figure img {
