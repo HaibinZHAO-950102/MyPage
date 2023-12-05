@@ -57,125 +57,75 @@
           <div class="mytext"></div>
 
           <div class="mytext">
-            The
-            <a href="https://freshindex.eu/" download target="_blank"
-              ><b>FreshIndex</b></a
-            >
-            project, led by TSENSO, aims to address the challenge of food waste,
-            where accurate data is needed to optimize the food supply chain and
-            improve sustainability and safety due to the varying characteristics
-            and shelf-life of food. FreshIndex provides an interconnected system
-            for assessing and visualizing the true quality, safety, and
-            shelf-life of food products, including dynamic best before dates
-            that are based on real-world conditions.
+            Deep neural networks have demonstrated remarkable performance across
+            diverse applications, yet their increasing size poses challenges.
+            The shallow layers of DNNs typically focus on feature extraction,
+            while the deeper layers concentrate on the specific task. Therefore,
+            by enhancing the efficiency of the feature extraction process, the
+            overall complexity of the DNNs can be reduced. Moreover, given that
+            deep learning is inherently data-driven, it is susceptible to
+            overfitting. This is especially true for the sensor-based human
+            activity recognition (HAR) tasks, because the difference among
+            individuals are significant, and, due to the difficultes in labeling
+            sensor-based HAR data, the scale of HAR datasets is generally small
+            A primary cause of this overfitting is that the features extracted
+            by DNNs overfit the target task. Employing more generalized features
+            may mitigate this issue, leading to higher generalization of DNNs.
           </div>
 
           <div class="section-spacing"></div>
-          <h4>Challenging</h4>
+          <h4>Learnable Sparse Wavelet Layer</h4>
           <div class="section-spacing"></div>
           <div class="mytext">
-            <b>Sparsity of measurement</b>: As it was in the initial phase of
-            the project, the collected data were highly unsystematic, e.g., the
-            fruits are measured at various times and locations, leading to a
-            substantial amount of missing data. This necessitated the
-            application of advanced data preprocessing techniques to either fill
-            in these gaps or develop models capable of handling incomplete data.
+            Considering the aforementioned problems, we tried to use more
+            general wavelets for feature extraction and sparsified the used
+            wavelets by pruning method. The proposed method greatly reduces the
+            computational effort of the model (including the wavelet layer) and
+            improves the classification accuracy.
           </div>
-          <div class="mytext">
-            <b>Ultra-small-scale dataset</b>: Due to the invasive nature of the
-            measurement of ground truth values, which destroys the fruit, there
-            is a scarcity of labeled data (less than 50 samples). To leverage
-            also the unlabeled data, semi-supervised learning techniques need to
-            be employed.
-          </div>
-          <div class="mytext">
-            <b>Prediction uncertainty and anomaly detection</b>: For ML users,
-            not only on the output, but also the confidence of the output is
-            important. To achieve this, Bayesian methods are employed alongside
-            other techniques to provide and enhance the confidence of the model
-            outputs.
-          </div>
-
-          <div class="section-spacing"></div>
-          <h4>AutoEncoder based semi-supervised learning</h4>
           <figure>
             <img
-              src="img/myfigures/freshindexae.png"
-              alt="FreshIndex"
-              style="width: 60%"
+              src="img/myfigures/learnablewavelet.png"
+              alt="Feature Engineering"
+              style="width: 100%"
             />
             <figcaption>
-              Figure 1: AutoEncoder based semi-supervised learning.
+              Figure 1: Learnable sparse wavelet layer for data preprocessing
+              for human activity recognition (HAR) tasks.
             </figcaption>
           </figure>
+
+          <div class="section-spacing"></div>
+          <h4>Automated feature engineering</h4>
           <div class="mytext">
-            By employing autoencoders and decoders, even unlabeled data can be
-            utilized to train models that learn the intrinsic characteristics of
-            the data. Meanwhile, another head is used for the regression task
-            (the real objective), which makes the model learn useful data
-            features for prediction making (figure 1).
-          </div>
-          <figure>
-            <img
-              src="img/myfigures/freshindexcompress.png"
-              alt="FreshIndex"
-              style="width: 70%"
-            />
-            <figcaption>
-              Figure 2: Possibilities for reducing and incresing feature sizes.
-            </figcaption>
-          </figure>
-          <div class="mytext">
-            In the autoencoder and decoder, multiple approaches to reduce and
-            increase feather sizes are designed (figure 2).
-          </div>
-          <div class="mytext">
-            Another advantage of autoencoders is that they can be used for
-            <b>anomaly detection</b>. Because the error model between the output
-            of the decoder and the input reflects the effectiveness of the model
-            in learning the features of the input data.
+            As a part of the data preprocessing, automated feature engineering
+            draws increasing attention. We developed a web platform for
+            automatic feature engineering for time series data. The platform is
+            avilable at
+            <a href="http://automl.teco.edu/" target="_blank"
+              >http://automl.teco.edu/</a
+            >. With this platform, users can upload their own data and select &
+            generate important features automatically.
           </div>
 
           <div class="section-spacing"></div>
-          <div class="section-spacing"></div>
-          <h4>Bayesian inference</h4>
-          <div class="section-spacing"></div>
-
-          <figure>
-            <img
-              src="img/myfigures/freshindexbae.png"
-              alt="FreshIndex"
-              style="width: 65%"
-            />
-            <figcaption>
-              Figure 3: Autoencoder with bayesian approach.
-            </figcaption>
-          </figure>
+          <h4>Data augmentation</h4>
           <div class="mytext">
-            By using a Bayesian approach, the network can give not only a
-            prediction, but also a confidence level about the prediction.
-            Moreover, by using Bayesian approach, the neural network can perform
-            better with small datasets.
-          </div>
-
-          <div class="section-spacing"></div>
-          <h4>Hyperparameter Optimization</h4>
-          <div class="section-spacing"></div>
-          <div class="mytext">
-            In the whole project, as numerous hyperparameters and network
-            structures are proposed (figure 2, figure 4), we employed Bayesian
-            optimization to find the best hyperparameters and network
-            structures.
+            Data augmentation can also be seen as a part of the data preprocess.
+            Target to the sensor-based human activity recognition (HAR) tasks,
+            we developed a data augmentation method, AutoAugHAR, which respects
+            the unique characteristic of HAR and can automatically generate new
+            data from the original data. This method can substantially improve
+            the performance of HAR models.
           </div>
           <figure>
             <img
-              src="img/myfigures/freshindextp.png"
-              alt="FreshIndex"
+              src="img/myfigures/randaug.png"
+              alt="Feature Engineering"
               style="width: 90%"
             />
             <figcaption>
-              Figure 4: Candidate models for temporal data processing to predice
-              fruit freshness.
+              Figure 2: Proposed RandAug for augmenting HAR data.
             </figcaption>
           </figure>
 
@@ -183,31 +133,26 @@
           <h4>Related Materials</h4>
           <div class="section-spacing"></div>
           <div class="mytext">
-            <ul>
-              <li>
-                <b>H. Zhao</b> <i>et al</i>. Improving Human Activity
-                    Recognition by Learnable Sparse Wavelet Layer. In
-                    Proceedings of International Symposium on Wearable Computers
-                    (ISWC), ACM, 2022.
-                    <a href="papers/2022_ISWC____Improving_HAR_Models_by_Learnable_Sparse_Wavelet_Layer.pdf" download target="_blank"><b>[PDF]</b></a>
-                    <a href="slides/learnable wavelet.pdf" download target="_blank"><b>[Slide]</b></a>
-                    <a href="https://github.com/teco-kit/ISWC22-HAR" target="_blank"><b>[Github]</b></a>
-                    <a href="https://www.youtube.com/watch?v=tQnB6zTKPqg" target="_blank"><b>[YouTube]</b></a>
-              </li>
-              <li>
-                Supervised bachelor thesis of <b>K. Li</b>, Automated Feature Engineering for Time Series Data. 2023.
-                <a
-                  href="papers/2023_Bachelor_Keyi_Li____Automated_Feature_Engineering_for_Time_Series_Data.pdf"
-                  download
-                  target="_blank"
-                  ><b>[PDF]</b></a
-                >
-                <a
-                  href="http://automl.teco.edu/" target="_blank"><b>[Web Platform]</b></a
-                >
-              </li>
-            </ul>
+              <ul>
+                  <li>
+                      <b>H. Zhao</b> <i>et al</i>. Improving Human Activity Recognition by Learnable Sparse Wavelet Layer. In Proceedings of International Symposium on Wearable Computers (ISWC), ACM, 2022.
+                      <a href="papers/2022_ISWC____Improving_HAR_Models_by_Learnable_Sparse_Wavelet_Layer.pdf" download target="_blank"><b>[PDF]</b></a>
+                      <a href="slides/learnable wavelet.pdf" download target="_blank"><b>[Slide]</b></a>
+                      <a href="https://github.com/teco-kit/ISWC22-HAR" target="_blank"><b>[Github]</b></a>
+                      <a href="https://www.youtube.com/watch?v=tQnB6zTKPqg" target="_blank"><b>[YouTube]</b></a>
+                  </li>
+                  <li>
+                      Y. Zhou, <b>H. Zhao</b> <i>et al</i>. AutoAugHAR: Automated Data Augmentation for Sensor-based Human Activity Recognition. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 2024.
+                      <!-- <a href="papers/2022_ISWC____Improving_HAR_Models_by_Learnable_Sparse_Wavelet_Layer.pdf" download target="_blank"><b>[PDF]</b></a> -->
+                  </li>
+                  <li>
+                      Supervised bachelor thesis of <b>K. Li</b>, Automated Feature Engineering for Time Series Data. 2023.
+                      <a href="papers/2023_Bachelor_Keyi_Li____Automated_Feature_Engineering_for_Time_Series_Data.pdf" download target="_blank"><b>[PDF]</b></a>
+                      <a href="http://automl.teco.edu/" target="_blank"><b>[Web Platform]</b></a>
+                  </li>
+              </ul>
           </div>
+
         </div>
       </div>
     </div>
