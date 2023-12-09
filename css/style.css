@@ -61,7 +61,7 @@ body{
 	color: #333;
 }
 svg{
-	fill: currentcolor;
+	/* fill: currentcolor; */
 	width: 15px;
 	height: 15px;
 }
